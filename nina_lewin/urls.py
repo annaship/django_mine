@@ -16,12 +16,22 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 urlpatterns = [
     url(r'^nina_lewin_website/', include('nina_lewin_website.urls')),
     url(r'^admin/', admin.site.urls),
+    # url('', RedirectView.as_view(url = '/nina_lewin_website/', permanent = True)),
+
+    # url('nina_lewin/', include('nina_lewin.urls')),
+
     # url(r'^metadata_template/', include('metadata_template.urls')),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
